@@ -3,11 +3,28 @@ require 'oystercard'
 describe Oystercard do
   subject(:oystercard) { described_class.new }
   let(:oyster_1) { Oystercard.new(0) }
-  let(:station) { double(:station) }
+  let(:station) { double :station }
+  let(:entry_station) { double :station }
+  let(:exit_station)  { double :station }
+  let(:journey){ {entry_station: entry_station, exit_station: exit_station} }
+
 
   describe "#balance" do
     it "should be zero" do
       expect(subject.balance).to eq(10)
+    end
+  end
+
+  describe '#journeys' do
+    it "should initialize as empty array" do
+      expect(subject.journeys).to eq({})
+    end
+
+
+    it 'should store a journey' do
+      subject.touch_in(entry_station)
+      subject.touch_out(exit_station)
+      expect(subject.journeys).to include journey
     end
   end
 
@@ -28,14 +45,13 @@ describe Oystercard do
 
   describe "#in_journey?" do
     it "should return true " do
-      p subject.in_journey?
       subject.touch_in(station)
       expect(subject.in_journey?).to be(true)
     end
 
     it "should return false" do
       subject.touch_in(station)
-      subject.touch_out
+      subject.touch_out(station)
       expect(subject.in_journey?).to be(nil)
     end
   end
@@ -45,7 +61,8 @@ describe Oystercard do
       expect{oyster_1.touch_in(station)}.to raise_error("Minimum required is £#{Oystercard::MINIMUM_AMOUNT}")
     end
 
-    it "remember touch in station" do
+
+    it "should remember touch in station" do
       subject.touch_in(station)
       expect(subject.entry_station).to eq(station)
     end
@@ -53,17 +70,17 @@ describe Oystercard do
 
   describe "#touch_out" do
     it "should make journey equal false" do
-      subject.touch_out
+      subject.touch_out(station)
       expect(subject.in_journey?).to be(nil)
     end
 
     it "should deduct £4 from balance" do
-      expect { subject.touch_out }.to change {subject.balance}.by(-4)
+      expect { subject.touch_out(station) }.to change {subject.balance}.by(-4)
     end
 
     it "should set entry station to nil" do
       subject.touch_in(station)
-      subject.touch_out
+      subject.touch_out(station)
       expect(subject.entry_station).to eq(nil)
     end
 
