@@ -23,7 +23,7 @@ describe Oystercard do
   end
 
   describe "MAXIMUM_LIMIT" do
-    it { expect(Oystercard::MAXIMUM_LIMIT).to eq(90)}
+    it { expect(Oystercard::MAXIMUM_LIMIT).to eq(90) }
   end
 
 end
