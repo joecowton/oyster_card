@@ -36,6 +36,21 @@ describe Oystercard do
     end
   end
 
+  describe "#touch_in" do
+    it "should make journey equal true" do
+      subject.touch_in
+      expect(subject.in_journey?).to be(true)
+    end
+  end
+
+  describe "#touch_out" do
+    it "should make journey equal false" do
+      subject.touch_out
+      expect(subject.in_journey?).to be(false)
+    end
+
+  end
+
   describe "MAXIMUM_LIMIT" do
     it { expect(Oystercard::MAXIMUM_LIMIT).to eq(90) }
   end
