@@ -25,12 +25,6 @@ describe Oystercard do
     end
   end
 
-  describe "#deduct" do
-    it "should deduct £4 from oystercard" do
-      expect(subject.deduct(4)).to eq(6)
-    end
-  end
-
   describe "#in_journey?" do
     it "should return true or false" do
       expect(subject.in_journey?).to be(true).or be(false)
@@ -52,6 +46,10 @@ describe Oystercard do
     it "should make journey equal false" do
       subject.touch_out
       expect(subject.in_journey?).to be(false)
+    end
+
+    it "should deduct £4 from balance" do
+      expect { subject.touch_out }.to change {subject.balance}.by(-4)
     end
 
   end
