@@ -4,8 +4,8 @@ class Oystercard
 
   MAXIMUM_LIMIT = 90
 
-  def initialize
-    @balance = 0
+  def initialize(amount = 10)
+    @balance = amount
   end
 
   def top_up(amount)
@@ -13,10 +13,15 @@ class Oystercard
     @balance += amount
   end
 
+  def deduct(fare)
+    @balance -= fare
+  end
+    
+
   private
 
   def exceeds_balance?(amount)
     @balance + amount > MAXIMUM_LIMIT
   end
-  
+
 end

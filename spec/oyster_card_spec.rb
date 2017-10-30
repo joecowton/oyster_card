@@ -1,9 +1,10 @@
 require 'oystercard'
 
 describe Oystercard do
+
   describe "#balance" do
     it "should be zero" do
-      expect(subject.balance).to eq(0)
+      expect(subject.balance).to eq(10)
     end
   end
 
@@ -14,11 +15,17 @@ describe Oystercard do
 
     it "should add 10 to balance" do
       subject.top_up(10)
-      expect(subject.balance).to eq(10)
+      expect(subject.balance).to eq(20)
     end
 
     it "should raise error if top up exceeds balance limit" do
       expect{subject.top_up(100)}.to raise_error("Exceeds balance limit of £#{Oystercard::MAXIMUM_LIMIT}")
+    end
+  end
+
+  describe "#deduct" do
+    it "should deduct £4 from oystercard" do
+      expect(subject.deduct(4)).to eq(6)
     end
   end
 
