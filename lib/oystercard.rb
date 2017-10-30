@@ -5,6 +5,7 @@ class Oystercard
   MAXIMUM_LIMIT = 90
 
   def initialize(amount = 10)
+    @journey = false
     @balance = amount
   end
 
@@ -16,7 +17,11 @@ class Oystercard
   def deduct(fare)
     @balance -= fare
   end
-    
+
+  def in_journey?
+    @journey
+  end
+
 
   private
 

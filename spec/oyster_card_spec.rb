@@ -1,6 +1,7 @@
 require 'oystercard'
 
 describe Oystercard do
+  subject(:oystercard) { described_class.new }
 
   describe "#balance" do
     it "should be zero" do
@@ -26,6 +27,12 @@ describe Oystercard do
   describe "#deduct" do
     it "should deduct £4 from oystercard" do
       expect(subject.deduct(4)).to eq(6)
+    end
+  end
+
+  describe "#in_journey?" do
+    it "should return true or false" do
+      expect(subject.in_journey?).to be(true).or be(false)
     end
   end
 
