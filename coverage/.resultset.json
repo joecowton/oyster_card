@@ -24,7 +24,6 @@
         1,
         null,
         null,
-        null,
         1,
         1,
         1,
@@ -113,10 +112,11 @@
         1,
         null,
         1,
+        null,
+        1,
         1,
         null,
         1,
-        14,
         14,
         14,
         14,
@@ -160,22 +160,40 @@
         null,
         null
       ],
+      "/Users/josephcowton/projects/oyster_card/lib/station.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        3,
+        3,
+        null,
+        null,
+        null
+      ],
       "/Users/josephcowton/projects/oyster_card/spec/station_spec.rb": [
         1,
         null,
         1,
+        null,
+        4,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
         null,
         1,
         2,
         null,
         null,
         null
-      ],
-      "/Users/josephcowton/projects/oyster_card/lib/station.rb": [
-        1,
-        null
       ]
     },
-    "timestamp": 1509401021
+    "timestamp": 1509403960
   }
 }

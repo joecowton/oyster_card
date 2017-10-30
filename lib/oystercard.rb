@@ -1,3 +1,5 @@
+require 'station'
+
 class Oystercard
 
   attr_reader :balance, :entry_station, :journeys, :all_journeys
@@ -7,7 +9,6 @@ class Oystercard
 
   def initialize(amount = 10)
     @balance = amount
-    @entry_station
     @journeys = {}
     @all_journeys = []
   end
@@ -23,14 +24,14 @@ class Oystercard
 
   def touch_in(station)
     fail "Minimum required is £#{MINIMUM_AMOUNT}" if below_minimum?
-    @entry_station = station.to_s
+    @entry_station = station
     @journeys[:entry_station] = station
   end
 
   def touch_out(station)
     deduct
     @entry_station = nil
-    @journeys[:exit_station] = station.to_s
+    @journeys[:exit_station] = station
     @all_journeys << @journeys
   end
 

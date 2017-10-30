@@ -20,7 +20,6 @@ describe Oystercard do
       expect(subject.journeys).to eq({})
     end
 
-
     it 'should store a journey' do
       subject.touch_in(entry_station)
       subject.touch_out(exit_station)
