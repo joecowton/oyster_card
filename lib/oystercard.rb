@@ -6,6 +6,7 @@ attr_reader :balance
   end
 
   def top_up(amount)
+    fail "Exceeds balance limit" if @balance + amount > 90
     @balance += amount
   end
 

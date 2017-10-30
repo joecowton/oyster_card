@@ -1,7 +1,6 @@
 require 'oystercard'
 
 describe Oystercard do
-
   describe "#balance" do
     it "should be zero" do
       expect(subject.balance).to eq(0)
@@ -11,7 +10,6 @@ describe Oystercard do
   describe  "#top_up" do
     it "should take an arguement and add to the balance" do
         expect(subject).to respond_to(:top_up).with(1).argument
-      end
     end
 
     it "should add 10 to balance" do
@@ -19,7 +17,8 @@ describe Oystercard do
       expect(subject.balance).to eq(10)
     end
 
-
-
-
+    it "should raise error if top up exceeds balance limit" do
+      expect{subject.top_up(100)}.to raise_error("Exceeds balance limit")
+    end
+  end
 end
