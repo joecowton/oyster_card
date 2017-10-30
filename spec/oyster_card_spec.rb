@@ -2,6 +2,7 @@ require 'oystercard'
 
 describe Oystercard do
   subject(:oystercard) { described_class.new }
+  let(:oyster_1) { Oystercard.new(0) }
 
   describe "#balance" do
     it "should be zero" do
@@ -41,6 +42,10 @@ describe Oystercard do
       subject.touch_in
       expect(subject.in_journey?).to be(true)
     end
+
+    it "should raise error if balance is less than 1" do
+      expect{oyster_1.touch_in}.to raise_error("Minimum required is £#{Oystercard::MINIMUM_AMOUNT}")
+    end
   end
 
   describe "#touch_out" do
@@ -53,6 +58,10 @@ describe Oystercard do
 
   describe "MAXIMUM_LIMIT" do
     it { expect(Oystercard::MAXIMUM_LIMIT).to eq(90) }
+  end
+
+  describe "MINIMUM_AMOUNT" do
+    it { expect(Oystercard::MINIMUM_AMOUNT).to eq(1) }
   end
 
 end
