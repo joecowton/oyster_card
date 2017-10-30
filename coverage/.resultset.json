@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/josephcowton/projects/oyster_card/spec/oyster_card_spec.rb": [
+      "/home/lewis/Repositories/Makers_Week_2/oyster_card/spec/oyster_card_spec.rb": [
         1,
         null,
         1,
@@ -90,7 +90,7 @@
         null,
         null
       ],
-      "/Users/josephcowton/projects/oyster_card/lib/oystercard.rb": [
+      "/home/lewis/Repositories/Makers_Week_2/oyster_card/lib/oystercard.rb": [
         1,
         null,
         1,
@@ -99,7 +99,6 @@
         1,
         null,
         1,
-        12,
         12,
         12,
         null,
@@ -147,7 +146,7 @@
         null,
         null
       ],
-      "/Users/josephcowton/projects/oyster_card/spec/station_spec.rb": [
+      "/home/lewis/Repositories/Makers_Week_2/oyster_card/spec/station_spec.rb": [
         1,
         null,
         1,
@@ -158,11 +157,11 @@
         null,
         null
       ],
-      "/Users/josephcowton/projects/oyster_card/lib/station.rb": [
+      "/home/lewis/Repositories/Makers_Week_2/oyster_card/lib/station.rb": [
         1,
         null
       ]
     },
-    "timestamp": 1509386934
+    "timestamp": 1509387250
   }
 }

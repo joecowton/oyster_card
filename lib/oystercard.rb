@@ -6,7 +6,6 @@ class Oystercard
   MINIMUM_AMOUNT = 1
 
   def initialize(amount = 10)
-    @journey = false
     @balance = amount
     @entry_station
   end
