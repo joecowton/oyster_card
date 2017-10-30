@@ -17,25 +17,31 @@ class Oystercard
   end
 
   def in_journey?
-    @journey
+    true if @entry_station
   end
 
   def touch_in(station)
     fail "Minimum required is £#{MINIMUM_AMOUNT}" if below_minimum?
-    @entry_station = station
-    @journey = true
+    set_station(station)
   end
 
   def touch_out
     deduct
-    @journey = false
+    forget_station
   end
-
 
   private
 
   def exceeds_balance?(amount)
     @balance + amount > MAXIMUM_LIMIT
+  end
+
+  def set_station(station)
+    @entry_station = station
+  end
+
+  def forget_station
+    @entry_station = nil
   end
 
   def below_minimum?
@@ -45,7 +51,5 @@ class Oystercard
   def deduct
     @balance -= 4
   end
-
-
 
 end

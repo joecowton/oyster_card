@@ -27,17 +27,20 @@ describe Oystercard do
   end
 
   describe "#in_journey?" do
-    it "should return true or false" do
-      expect(subject.in_journey?).to be(true).or be(false)
-    end
-  end
-
-  describe "#touch_in" do
-    it "should make journey equal true" do
+    it "should return true " do
+      p subject.in_journey?
       subject.touch_in(station)
       expect(subject.in_journey?).to be(true)
     end
 
+    it "should return false" do
+      subject.touch_in(station)
+      subject.touch_out
+      expect(subject.in_journey?).to be(nil)
+    end
+  end
+
+  describe "#touch_in" do
     it "should raise error if balance is less than 1" do
       expect{oyster_1.touch_in(station)}.to raise_error("Minimum required is £#{Oystercard::MINIMUM_AMOUNT}")
     end
@@ -51,11 +54,17 @@ describe Oystercard do
   describe "#touch_out" do
     it "should make journey equal false" do
       subject.touch_out
-      expect(subject.in_journey?).to be(false)
+      expect(subject.in_journey?).to be(nil)
     end
 
     it "should deduct £4 from balance" do
       expect { subject.touch_out }.to change {subject.balance}.by(-4)
+    end
+
+    it "should set entry station to nil" do
+      subject.touch_in(station)
+      subject.touch_out
+      expect(subject.entry_station).to eq(nil)
     end
 
   end
