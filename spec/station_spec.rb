@@ -1,19 +1,19 @@
 require 'station'
 
 describe Station do
+  subject {Station.new(:Waterloo)}
 
-  subject(:station) {described_class.new(:name, :zone)}
+  describe 'creates with' do
+    context 'name which' do
+       it "is Waterloo" do
+         expect(subject.name).to eq(:Waterloo)
+       end
+    end
 
-  describe "Station.new" do
-    it {expect(subject).to be_an_instance_of(Station)}
+    context 'zone which' do
+      it 'is 1' do
+        expect(subject.zone).to eq(1)
+      end
+    end
   end
-
-  describe "zone variable" do
-    it { expect(subject.zone).to eq(:zone) }
-  end
-
-  describe "name variable" do
-    it { expect(subject.name).to eq(:name) }
-  end
-
 end

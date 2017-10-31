@@ -7,10 +7,12 @@ class Oystercard
   MAXIMUM_LIMIT = 90
   MINIMUM_AMOUNT = 1
 
-  def initialize(amount = 10)
-    @balance = amount
+  def initialize(balance = 10, station = nil, journey_class = Journey)
+    @balance = balance
+    @entry_station = station
     @journeys = {}
     @all_journeys = []
+
   end
 
   def top_up(amount)
@@ -19,7 +21,7 @@ class Oystercard
   end
 
   def in_journey?
-    true if @entry_station
+    !!@entry_station
   end
 
   def touch_in(station)
