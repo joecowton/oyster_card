@@ -1,7 +1,7 @@
 require 'oystercard'
 
 describe Oystercard do
-  subject(:oystercard) { described_class.new }
+  subject(:oystercard) { described_class.new(10) }
   let(:oyster_1) { Oystercard.new(0) }
   let(:station) { double :station }
   let(:entry_station) { double :station }
@@ -11,17 +11,19 @@ describe Oystercard do
 
   describe "#balance" do
     it "should be zero" do
-      expect(subject.balance).to eq(10)
+      subject = described_class.new(0)
+      expect(subject.balance).to eq(0)
     end
   end
 
   describe '#journeys' do
     it "should initialize as empty array" do
-      expect(subject.journeys).to eq({})
+      expect(subject.journeys).to be_an Array
     end
 
 
     it 'should store a journey' do
+      subject = described_class.new(50)
       subject.touch_in(entry_station)
       subject.touch_out(exit_station)
       expect(subject.journeys).to include journey
@@ -52,7 +54,7 @@ describe Oystercard do
     it "should return false" do
       subject.touch_in(station)
       subject.touch_out(station)
-      expect(subject.in_journey?).to be(nil)
+      expect(subject.in_journey?).to be(false)
     end
   end
 
@@ -71,7 +73,7 @@ describe Oystercard do
   describe "#touch_out" do
     it "should make journey equal false" do
       subject.touch_out(station)
-      expect(subject.in_journey?).to be(nil)
+      expect(subject.entry_station).to be(nil)
     end
 
     it "should deduct £4 from balance" do
